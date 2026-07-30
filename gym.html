@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anvil Strength Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#121212;
+    --charcoal:#1E1E1E;
+    --concrete:#2A2A2A;
+    --orange:#FF4D1C;
+    --steel:#9AA1A6;
+    --off:#EDEAE4;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--black); color:var(--off); font-family:'Inter',sans-serif; line-height:1.5; }
+  h1,h2,h3{ font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.02em; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 24px; }
+
+  header{ position:sticky; top:0; z-index:10; background:var(--black); border-bottom:1px solid rgba(255,255,255,0.08); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 24px; }
+  .logo{ font-family:'Oswald',sans-serif; font-weight:700; font-size:22px; letter-spacing:0.06em; }
+  .logo span{ color:var(--orange); }
+  .nav-links{ display:flex; gap:32px; list-style:none; font-size:13px; text-transform:uppercase; letter-spacing:0.08em; }
+  .cta-btn{ background:var(--orange); color:var(--black); padding:10px 20px; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.06em; }
+
+  .hero{ padding:90px 0 70px; border-bottom:1px solid rgba(255,255,255,0.08); position:relative; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center; }
+  .eyebrow{ color:var(--orange); font-size:13px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; margin-bottom:20px; }
+  .hero h1{ font-size:64px; line-height:0.98; margin-bottom:22px; }
+  .hero h1 .out{ color:var(--orange); }
+  .hero p{ color:var(--steel); max-width:420px; font-size:16px; margin-bottom:32px; }
+  .btn-row{ display:flex; gap:14px; }
+  .btn-primary{ background:var(--orange); color:var(--black); padding:15px 28px; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.06em; }
+  .btn-secondary{ border:1.5px solid var(--steel); padding:14px 26px; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.06em; color:var(--off); }
+
+  /* Plate stack signature */
+  .stack{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .plate{ height:22px; border-radius:6px; background:var(--concrete); border:2px solid #3a3a3a; position:relative; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--steel); font-family:'Oswald',sans-serif; letter-spacing:0.05em; }
+  .plate.p1{ width:280px; background:var(--orange); color:var(--black); border-color:var(--orange); font-weight:700; }
+  .plate.p2{ width:230px; }
+  .plate.p3{ width:190px; }
+  .plate.p4{ width:150px; }
+  .bar{ width:340px; height:8px; background:#454545; border-radius:4px; margin-top:4px; }
+
+  section{ padding:80px 0; }
+  .section-tag{ color:var(--orange); font-size:13px; letter-spacing:0.16em; text-transform:uppercase; font-weight:600; margin-bottom:14px; }
+  .section-title{ font-size:38px; margin-bottom:10px; }
+  .section-sub{ color:var(--steel); max-width:520px; margin-bottom:44px; font-size:15px; }
+
+  .programs{ background:var(--charcoal); }
+  .program-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .program-card{ background:var(--black); border:1px solid rgba(255,255,255,0.08); padding:30px 24px; }
+  .program-num{ color:var(--orange); font-family:'Oswald',sans-serif; font-size:14px; margin-bottom:16px; }
+  .program-card h3{ font-size:22px; margin-bottom:10px; }
+  .program-card p{ color:var(--steel); font-size:14px; }
+
+  .pricing-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .price-card{ background:var(--concrete); padding:32px 26px; border-top:3px solid var(--steel); }
+  .price-card.featured{ border-top-color:var(--orange); background:#26201c; }
+  .price-card h3{ font-size:18px; margin-bottom:6px; }
+  .price-amt{ font-family:'Oswald',sans-serif; font-size:36px; color:var(--orange); margin:14px 0; }
+  .price-amt span{ font-size:14px; color:var(--steel); text-transform:none; font-family:'Inter',sans-serif; }
+  .price-card ul{ list-style:none; font-size:13px; color:var(--steel); margin-bottom:24px; }
+  .price-card li{ padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .price-btn{ display:block; text-align:center; background:var(--off); color:var(--black); padding:12px; font-weight:600; text-transform:uppercase; font-size:13px; letter-spacing:0.05em; }
+  .price-card.featured .price-btn{ background:var(--orange); }
+
+  .cta-strip{ background:var(--orange); color:var(--black); text-align:center; }
+  .cta-strip h2{ font-size:34px; margin-bottom:16px; }
+  .cta-strip .btn-primary{ background:var(--black); color:var(--off); margin:0 auto; display:inline-block; }
+
+  footer{ padding:40px 0; text-align:center; font-size:13px; color:var(--steel); }
+
+  @media (max-width:800px){
+    .hero-grid, .program-grid, .pricing-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:42px; }
+    .stack{ margin-top:30px; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo">ANVIL<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#trainers">Trainers</a></li>
+    </ul>
+    <a class="cta-btn" href="#pricing">Join Now</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Strength &amp; Conditioning · Bhilai</div>
+      <h1>Train like<br>the <span class="out">weight</span><br>owes you.</h1>
+      <p>Free weights, no fluff. Small batches, real coaching, and a floor built for people who actually want to get stronger — not just show up.</p>
+      <div class="btn-row">
+        <a class="btn-primary" href="#pricing">Start Free Trial</a>
+        <a class="btn-secondary" href="#programs">View Programs</a>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="plate p2">25 KG</div>
+      <div class="plate p3">20 KG</div>
+      <div class="plate p1">MAX OUT</div>
+      <div class="plate p3">20 KG</div>
+      <div class="plate p4">10 KG</div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="section-tag">The floor</div>
+    <h2 class="section-title">Pick your program</h2>
+    <p class="section-sub">Every block runs 8 weeks, capped at 12 people, so the coach actually watches your form.</p>
+    <div class="program-grid">
+      <div class="program-card">
+        <div class="program-num">01</div>
+        <h3>Strength Block</h3>
+        <p>Squat, bench, deadlift progressions for lifters chasing a real number on the bar.</p>
+      </div>
+      <div class="program-card">
+        <div class="program-num">02</div>
+        <h3>Conditioning Circuit</h3>
+        <p>Kettlebells, sleds, and intervals for fat loss without losing the muscle you built.</p>
+      </div>
+      <div class="program-card">
+        <div class="program-num">03</div>
+        <h3>Beginner Foundations</h3>
+        <p>Four weeks of pure technique before you touch a program — no ego, no injuries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-tag">Membership</div>
+    <h2 class="section-title">Simple pricing</h2>
+    <p class="section-sub">No lock-in contracts. Pause or cancel any month.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Drop-In</h3>
+        <div class="price-amt">₹250<span>/session</span></div>
+        <ul><li>Single floor access</li><li>No equipment restrictions</li><li>Good for travellers</li></ul>
+        <a class="price-btn" href="#">Book a Session</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Monthly</h3>
+        <div class="price-amt">₹1,800<span>/month</span></div>
+        <ul><li>Unlimited floor access</li><li>1 program of your choice</li><li>Progress tracking</li></ul>
+        <a class="price-btn" href="#">Join Now</a>
+      </div>
+      <div class="price-card">
+        <h3>Quarterly</h3>
+        <div class="price-amt">₹4,800<span>/3 months</span></div>
+        <ul><li>Unlimited floor access</li><li>Any 2 programs</li><li>Free form-check session</li></ul>
+        <a class="price-btn" href="#">Join Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <h2>First session's on the house.</h2>
+    <a class="btn-primary" href="tel:+911234567890">Call: +91 12345 67890</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Anvil Strength Club. Demo website built by Piyush.</div>
+</footer>
+
+</body>
+</html>
